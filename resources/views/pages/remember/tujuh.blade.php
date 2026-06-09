@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Chapter 1 - Gentures 23</title>
-  <link rel="shortcut icon" href="img/log_gen3.webp"/>
+  <link rel="shortcut icon" href="{{ asset('img/llog_gen3.webp"/>
   @vite(['resources/css/app.css', 'resources/js/app.js'])
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
