@@ -94,6 +94,13 @@ html {
 .nav-links li a:hover {
   color: #3abefc;
 }
+.dlogo {
+  color: #0097d2;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 1.2rem;
+  animation: 0.1ms;
+}
 /* =========================================
    FOTO PROFIL DI NAVBAR
    ========================================= */
