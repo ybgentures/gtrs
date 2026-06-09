@@ -7,7 +7,7 @@
       
       <div class="logo-div">
         <a href="/"><img src="{{ asset('img/log_gen3.webp') }}" alt="Logo Gentures" loading="eager" /></a>
-        <a href="/" class="logo">GENTURES</a>
+        <a href="/" class="dlogo">GENTURES</a>
       </div>
       
       <ul class="nav-links" id="navMenu">
