@@ -6,7 +6,7 @@
   <title>Login Member - Gentures 23</title>
   <link rel="shortcut icon" href="{{ asset('img/log_gen3.webp') }}" />
   @vite(['resources/css/app.css'])
-  <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
@@ -48,7 +48,7 @@
     .login-photo-panel {
       flex: 3;
       position: relative;
-      background-image: url('{{ asset("img/allgen.png") }}'); /* Silakan ganti ke file foto angkatan bersama kamu */
+      background-image: url('img/allgen.png'); /* Silakan ganti ke file foto angkatan bersama kamu */
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
