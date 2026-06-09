@@ -30,6 +30,11 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/zaytun', function () {
         return view('pages.zaytun');
     });
+
+Route::get('/migrate-db', function () {
+    \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+    return "Database berhasil disiapkan!";
+});
 // Memanggil file rute tambahan agar ikut dibaca oleh Laravel
 require __DIR__ . '/RememberController.php';
 require __DIR__ . '/NewsController.php';
