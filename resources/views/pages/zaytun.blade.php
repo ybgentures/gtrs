@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Gentures - Ma'had Al-Zaytun</title>
   <link rel="shortcut icon" href="{{ asset('img/log_gen3.webp') }}"/>
-  @vite(['resources/css/app.css', 'resources/js/zaytun.js'])
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet" />

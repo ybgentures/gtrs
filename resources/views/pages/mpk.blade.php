@@ -10,7 +10,7 @@
     />
     <title>Gentures</title>
     <link rel="shortcut icon" href="img/log_gen3.webp" />
-    @vite(['resources/css/app.css', 'resources/js/scrollbutton.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

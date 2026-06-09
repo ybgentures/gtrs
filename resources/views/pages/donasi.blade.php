@@ -9,7 +9,7 @@
     content="Gentures, Gentures23, 23gentures, angkatan23,angkatan 23 Gentures, Gentures Al-Zaytun" />
   <title>Gentures</title>
   <link rel="shortcut icon" href="img/log_gen3.webp"/>
-  @vite(['resources/css/app.css', 'resources/js/donasi.js'])
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
