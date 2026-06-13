@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login Member - Gentures 23</title>
   <link rel="shortcut icon" href="{{ asset('img/log_gen3.webp') }}" />
-  @vite(['resources/css/app.css'])
+  @vite('resources/css/app.css')
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 

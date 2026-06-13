@@ -16,7 +16,7 @@
         
         <li class="hideOnMobile">
           <a href="/donasi" class="btn-donasi-nav">Support <i class="fa-solid fa-hand-holding-heart"></i></a>
-        </li>
+         </li>
         
         @if (session()->has('nama') && session('role') == 'member')
           <li class="hideOnMobile">
