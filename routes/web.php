@@ -31,6 +31,11 @@ Route::get('/zaytun', function () {
         return view('pages.zaytun');
     });
 
+Route::get('/jalankan-migrasi', function () {
+    \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+    return "Selamat, tabel database berhasil dibuat!";
+});
+
 // Memanggil file rute tambahan agar ikut dibaca oleh Laravel
 require __DIR__ . '/RememberController.php';
 require __DIR__ . '/NewsController.php';
