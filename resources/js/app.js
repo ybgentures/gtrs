@@ -169,22 +169,25 @@ document.addEventListener('contextmenu', function(e) {
 
 const formSaran = document.getElementById('formSaran');
 
-if (formSaran) { // CEK AMAN: Hanya jalan di halaman yang ada formulirnya
+if (formSaran) { 
     formSaran.addEventListener('submit', function(event) {
+        event.preventDefault(); // 1. Tahan browser dari awal agar tidak reload halaman
+
         const pesanInput = document.getElementById('pesan');
         if (!pesanInput) return;
         
+        // --- A. PENGECEKAN KATA KASAR ---
         const pesan = pesanInput.value.toLowerCase();
         const kataTerlarang = ['judi', 'slot', 'kasino', 'bodoh', 'anjing', 'http://'];
         
         for (let i = 0; i < kataTerlarang.length; i++) {
             if (pesan.includes(kataTerlarang[i])) {
                 alert('⚠️ Pesanmu tidak dapat dikirim karena mengandung kata yang tidak pantas atau link mencurigakan.');
-                event.preventDefault(); 
-                return; 
+                return; // Langsung hentikan fungsi, tidak perlu event.preventDefault() lagi karena sudah di atas
             }
         }
 
+        // --- B. PENGECEKAN JEDA WAKTU (COOLDOWN 10 MENIT) ---
         const waktuTerakhir = localStorage.getItem('waktuKirimSaran');
         const waktuSekarang = new Date().getTime();
         const jedaMiliDetik = 10 * 60 * 1000;
@@ -201,14 +204,48 @@ if (formSaran) { // CEK AMAN: Hanya jalan di halaman yang ada formulirnya
                 if (sisaDetik > 0 || sisaMenit === 0) teksWaktu += sisaDetik + " detik";
 
                 alert(`⏳ Tunggu sebentar! Kamu baru saja mengirim pesan. Harap tunggu ${teksWaktu} lagi.`);
-                event.preventDefault(); 
-                return;
+                return; // Hentikan proses pengiriman API jika belum lewat 10 menit
             }
         }
-        localStorage.setItem('waktuKirimSaran', waktuSekarang.toString());
-    });
-}
 
+        // --- C. PROSES PENYELARASAN & PENGIRIMAN API ---
+        // Kita paksa datanya menjadi huruf kecil agar sesuai dengan kemauan API Laravel
+        const dataForm = new FormData();
+        dataForm.append('nama', document.getElementById('nama').value);
+        dataForm.append('peran', document.getElementById('peran').value);
+        dataForm.append('pesan', document.getElementById('pesan').value);
+
+        // Tembak langsung ke API lokal backend-mu
+        fetch('/api/saran', {
+            method: 'POST',
+            body: dataForm,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(hasil => {
+            if (hasil.status === 'sukses') {
+                alert('🎉 ' + hasil.pesan);
+                this.reset(); // Mengosongkan form inputan secara otomatis
+                
+                // Catat waktu kirim sukses ke localStorage agar cooldown bekerja
+                localStorage.setItem('waktuKirimSaran', waktuSekarang.toString());
+            } else {
+                alert('❌ Gagal mengirim: ' + hasil.pesan);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('🔥 Terjadi kendala teknis saat menghubungi server.');
+        });
+
+    }); // 👈 INI PENUTUP ADDEVENTLISTENER YANG TADI HILANG!
+} // 👈 INI PENUTUP PERINTAH IF YANG TADI HILANG!
+
+// ==========================================
+// 3. FUNGSI KOTAK KONTEN (Zaytun.PHP)
+// ==========================================
 window.toggleKotak = function(elemen) {
     elemen.classList.toggle('aktif');
     let konten = elemen.querySelector('.kotak-konten');

@@ -18,46 +18,42 @@ class AuthController extends Controller
     // Fungsi untuk memproses data dari Form (Logika)
     public function prosesLogin(Request $request)
     {
-        // 1. Tangkap inputan form (Laravel otomatis membersihkan dari hacker)
+        // 1. Tangkap inputan form
         $no_id = $request->input('no_id');
         $password = $request->input('password');
 
-        // 2. Cek ke tabel users
-        $user = DB::table('users')->where('no_id', $no_id)->first();
+        // 2. Cek langsung ke tabel data_pelajar (bukan tabel users)
+        $pelajar = DB::table('data_pelajar')->where('no_id', $no_id)->first();
 
-        // 3. Jika user ada DAN password cocok (menggantikan password_verify)
-        if ($user && Hash::check($password, $user->password)) {
+        // 3. Jika data ditemukan DAN password cocok
+        if ($pelajar && Hash::check($password, $pelajar->password)) {
             
-            // 4. Ambil biodata dari tabel data_pelajar
-            $biodata = DB::table('data_pelajar')->where('no_id', $no_id)->first();
-
-            // 5. Simpan ke Session Laravel
-            Session::put('no_id', $user->no_id);
-            Session::put('role', $user->role);
+            // 4. Simpan ke Session Laravel
+            Session::put('no_id', $pelajar->no_id);
+            Session::put('nama', $pelajar->nama_lengkap); 
             
-            if ($biodata) {
-                // (Sesuaikan $biodata->nama dengan nama kolom asli di database Anda)
-                Session::put('nama', $biodata->nama_lengkap ?? 'Siswa'); 
-                
-                // INI YANG BARU: Simpan nama file foto ke session (jika kosong, pakai default.jpg)
-                Session::put('foto', $biodata->foto ?? 'default.jpg');
-            } else {
-                Session::put('nama', 'Pengguna');
-                Session::put('foto', 'default.jpg');
-            }
+            // Simpan nama file foto ke session (jika kosong, pakai default.jpg)
+            Session::put('foto', $pelajar->foto ?? 'default.jpg');
             Session::put('baru_login', true);
 
-            // 6. Arahkan kembali ke halaman utama
+            // (Opsional) Jika kamu butuh penanda role, kamu bisa mengaturnya secara manual di sini:
+            // Session::put('role', 'siswa');
+
+            // 5. Arahkan kembali ke halaman utama jika sukses
             return redirect('/');
         }
+
+        // 6. JIKA GAGAL: Tendang balik ke halaman login dan bawa pesan error
+        return back()->withErrors(['error' => 'Nomor ID atau Password salah!']);
     }
+
     // Fungsi untuk menghancurkan sesi (Logout)
     public function logout()
     {
-        // 1. Hancurkan semua sesi (Pengganti session_unset dan session_destroy)
+        // 1. Hancurkan semua sesi
         Session::flush();
 
-        // 2. Arahkan kembali ke halaman beranda (Pengganti header Location)
+        // 2. Arahkan kembali ke halaman beranda
         return redirect('/');
     }
 }

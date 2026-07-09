@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="id">
+<html lang="id">  
 
 <head>
   <meta charset="UTF-8" />
@@ -75,7 +75,7 @@
         <a href="/mpk" class="neon-glow-btn btn-warna-mpk">
           <div class="btn-content">
             <span class="main-txt">STRUKTURAL MPK</span>
-            <span class="sub-txt">Majelis Permusyawaratan Kelas</span>
+            <span class="sub-txt">Majelis Permusyawaratan Kelas Angkatan 23 </span>
           </div>
           <div class="logo-icon">
             <img src="{{ asset('img/logo_gen5.png') }}" class="logoicon" alt="Logo MPK" class="icon-mpk" />
@@ -85,7 +85,7 @@
         <a href="/opmaz" class="neon-glow-btn btn-warna-opmaz">
           <div class="btn-content">
             <span class="main-txt">STRUKTURAL OPMAZ</span>
-            <span class="sub-txt">Organisasi Pelajar Mahad Al-Zaytun</span>
+            <span class="sub-txt">Organisasi Pelajar Mahad Al-Zaytun Dharma Bakti 23</span>
           </div>
           <div class="logo-icon">
             <img src="{{ asset('img/logoopm.png') }}" class="logoicon" alt="Logo OPMAZ" class="icon-opmaz" />
@@ -108,7 +108,7 @@
         Banin: 260 | Banat: 228
       </p>
       
-      @if (session('role') == 'member')
+      @if (session()->has('no_id'))
         <a href="/pelajar" class="btn-selengkapnya">Tampilkan lebih banyak <i class="fa-solid fa-arrow-right"></i></a>
         @else
         <a href="/login" class="btn-selengkapnya">Login Untuk Melihat Lebih <i class="fa-solid fa-lock"></i></a>
@@ -374,7 +374,7 @@
     </div>
   </div>
 </section>
- @if (session('role') == 'member') 
+ @if (session()->has('no_id'))
     <div class="kontainerform">
       <div class="kotakform efect">
         <div>
@@ -398,16 +398,16 @@
       </div>
     </div>
   <div class="saran-form-box">
-  <form action="https://formspree.io/f/mbdbyvow" method="POST" class="form-saran" id="formSaran">
+  <form class="form-saran" id="formSaran">
     
     <div class="form-group">
       <label for="nama">Nama</label>
-      <input type="text" id="nama" name="Nama" placeholder="Contoh: Noval" required>
+      <input type="text" id="nama" name="Nama" placeholder="Contoh: Mohamad Noval Maulidi" required>
     </div>
 
     <div class="form-group">
-      <label for="asal">Siapa kamu?</label>
-      <input type="text" id="asal" name="Asal" placeholder="Contoh: Pelajar Angkatan 23" required>
+      <label for="peran">Siapa kamu?</label>
+      <input type="text" id="peran" name="Peran" placeholder="Contoh: Pelajar Angkatan 23" required>
     </div>
 
     <div class="form-group">
@@ -418,7 +418,7 @@
     <input type="text" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off">
 
     <button type="submit" class="but-kirim-saran">
-      Kirim Pesan <i class="fa-solid fa-paper-plane"></i>
+      Kirim Pesan <i class="fa-solid fa-paper-plane"></i> 
     </button>
   </form>
 </div>

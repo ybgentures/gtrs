@@ -8,7 +8,7 @@ Route::get('/pelajar', function () {
 Route::get('/pelajar', function () {
     
     // SATPAM PENJAGA
-    if (session('role') != 'member') {
+     if (!session()->has('no_id')) {
         return redirect('/login')->with('error', 'Akses Ditolak! Anda harus Login.');
     }
 
@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\DB;
 Route::get('/pelajar', function () {
     
     // Satpam Penjaga
-    if (session('role') != 'member') {
+    if (!session()->has('no_id')) {
         return redirect('/login')->with('error', 'Akses Ditolak! Anda harus Login.');
     }
 

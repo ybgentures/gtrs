@@ -244,14 +244,14 @@
         <h1 class="brand-title">Gentures</h1>
       </div>
 
-      @if (session('error'))
-          <div class="alert-error-box">
-            <i class="fa-solid fa-circle-exclamation"></i> {{ session('error') }}
-          </div>
+      @if ($errors->has('error'))
+        <div class="alert-error-box">
+          <i class="fa-solid fa-circle-exclamation"></i> {{ $errors->first('error') }}
+        </div>
       @endif
 
-      <form method="POST" action="/login">
-        <div class="custom-input-group">
+     <form action="{{ route('login.proses') }}" method="POST">
+        @csrf <div class="custom-input-group">
           <input type="text" name="no_id" placeholder="Masukkan No ID" required autocomplete="off">
           <i class="fa-solid fa-id-badge"></i>
         </div>

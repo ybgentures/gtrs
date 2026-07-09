@@ -18,7 +18,7 @@
           <a href="/donasi" class="btn-donasi-nav">Support <i class="fa-solid fa-hand-holding-heart"></i></a>
          </li>
         
-        @if (session()->has('nama') && session('role') == 'member')
+        @if (session()->has('no_id'))
           <li class="hideOnMobile">
             <img src="{{ asset('img/' . (session('foto') ?: 'default.jpg')) }}" class="foto-profil-nav" alt="Profil">
           </li>
@@ -42,7 +42,7 @@
         
         <li><a href="/donasi" class="btn-donasi-sidebar">Support <i class="fa-solid fa-hand-holding-heart"></i></a></li>
         
-        @if (session('role') == 'member')
+        @if (session()->has('no_id'))
           <li><a href="/logout" class="btn-logout-sidebar">Logout <i class="fa-solid fa-right-from-bracket"></i></a></li>
         @else
           <li><a href="/login" class="btn-login-sidebar">Login <i class="fa-solid fa-right-to-bracket"></i></a></li>

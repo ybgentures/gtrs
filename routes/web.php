@@ -18,14 +18,14 @@ Route::get('/opmaz', function () {
     return view('pages.opmaz');
 });
 
-// Menampilkan form HTML (GET)
-Route::get('/login', [AuthController::class, 'showLogin']);
+// Menampilkan form HTML (GET) - Tambahkan ->name('login') di ujungnya
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 
-// Memproses klik tombol submit dari form (POST)
-Route::post('/login', [AuthController::class, 'prosesLogin']);
+// --- INI SOLUSINYA: Rute untuk memproses data form (method POST) ---
+Route::post('/login-proses', [AuthController::class, 'prosesLogin'])->name('login.proses');
 
-// Proses Logout
-Route::get('/logout', [AuthController::class, 'logout']);
+// Proses Logout - Tambahkan ->name('logout') di ujungnya
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/zaytun', function () {
         return view('pages.zaytun');
