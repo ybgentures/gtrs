@@ -40,3 +40,4 @@ Route::get('/jalankan-migrasi', function () {
 require __DIR__ . '/RememberController.php';
 require __DIR__ . '/NewsController.php';
 require __DIR__ . '/PelajarController.php';
+require __DIR__ . '/web_catur.php'; // <-- Rute mini-game catur 6x6 (Los Alamos Chess)
